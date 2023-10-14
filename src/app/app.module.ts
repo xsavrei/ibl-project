@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
-import { HeaderBarComponent } from './components';
-import { RequestFormComponent } from './components';
+import { CheckboxListInputComponent, HeaderBarComponent, RequestFormComponent } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderBarComponent,
-    RequestFormComponent
+    RequestFormComponent,
+    CheckboxListInputComponent
   ],
   imports: [
     BrowserModule,
@@ -19,4 +18,5 @@ import { RequestFormComponent } from './components';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

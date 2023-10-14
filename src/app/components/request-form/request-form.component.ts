@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MessageType } from '../../domain';
 import { CustomValidators } from '../../validators';
 
@@ -13,25 +13,12 @@ export class RequestFormComponent {
   messageTypesValues = Object.values(MessageType);
 
   form = this.formBuilder.group({
-    messageTypes: this.formBuilder.array<MessageType | null>([], [Validators.required, CustomValidators.atLeastOneValue]),
-    airports: this.formBuilder.control<string[] | null>(null),
-    countries: this.formBuilder.control<string[] | null>(null),
+    messageTypes: this.formBuilder.control<MessageType[] | undefined>([], [Validators.required, CustomValidators.atLeastOneValue]),
+    airports: this.formBuilder.control<string[] | undefined>(undefined),
+    countries: this.formBuilder.control<string[] | undefined>(undefined),
   }, { validators: CustomValidators.atLeastOneControl(Validators.required, ['airports', 'countries']) });
 
   constructor(private formBuilder: FormBuilder) {
-    this.addValues();
-  }
-
-  getValuesFormArray(): FormArray {
-    return this.form.get('messageTypes') as FormArray;
-  }
-
-  private addValues(): void {
-    this.messageTypesValues?.forEach(() => {
-      this.getValuesFormArray().push(this.formBuilder.control<string | null>(null));
-    });
-
-    this.form.updateValueAndValidity();
   }
 
 }

@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+  <div formGroupName="values">
+    <ng-container *ngFor="let value of values; let index = index">
+      <div class="form-check-inline">
+        <input class="ms-1 form-check-input" type="checkbox" [id]="'checkbox-' + value"
+               [formControlName]="index" [value]="value">
+        <label class="ms-2 form-check-label" style="user-select: none" [for]="'checkbox-' + value">{{  value }}</label>
+      </div>
+    </ng-container>
+
+  </div>
+</div>
