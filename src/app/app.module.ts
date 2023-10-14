@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HeaderBarComponent } from './components/header-bar/header-bar.component';
+import { HeaderBarComponent } from './components';
+import { RequestFormComponent } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderBarComponent
+    HeaderBarComponent,
+    RequestFormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
