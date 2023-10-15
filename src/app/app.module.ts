@@ -3,13 +3,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CheckboxListInputComponent, HeaderBarComponent, RequestFormComponent } from './components';
+import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderBarComponent,
     RequestFormComponent,
-    CheckboxListInputComponent
+    CheckboxListInputComponent,
+    ValidationMessagesComponent
   ],
   imports: [
     BrowserModule,

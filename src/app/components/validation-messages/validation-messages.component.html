@@ -1,0 +1,5 @@
+<div *ngIf="showValidationMessage && errors" class="invalid-feedback">
+  <span *ngIf="errors.required">Requiered field</span>
+  <span *ngIf="errors.atLeastOneValue">At least one value should be selected</span>
+  <span *ngIf="errors.atLeastOneControl">At least one field should be filled</span>
+</div>

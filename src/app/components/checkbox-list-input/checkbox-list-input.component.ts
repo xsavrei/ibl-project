@@ -49,7 +49,11 @@ export class CheckboxListInputComponent<T> implements OnChanges, OnInit, OnDestr
     this.formValueChangesSubscription?.unsubscribe();
   }
 
-  private addValues(): void {
+  getValuesFormArray(): FormArray {
+    return this.form.get('values') as FormArray;
+  }
+
+  addValues(): void {
     this.values?.forEach(() => {
       this.getValuesFormArray().push(this.formBuilder.control<string | undefined>(undefined));
     });
@@ -58,7 +62,9 @@ export class CheckboxListInputComponent<T> implements OnChanges, OnInit, OnDestr
   }
 
   formValueChanged(): void {
-    let result: (T[] | null) = this.form.valid ? this.createValueFromForm() ?? null : null;
+    let result: (T[] | null) = this.form.valid
+      ? this.createValueFromForm() ?? null
+      : null;
 
     if (result && this.onTouched && !this.isDisabled) {
       this.onTouched();
@@ -69,7 +75,7 @@ export class CheckboxListInputComponent<T> implements OnChanges, OnInit, OnDestr
     }
   }
 
-  protected createValueFromForm(): T[] {
+  createValueFromForm(): T[] {
     const preparedValues: T[] = [];
     const preparedValuesFormArray: FormArray = this.getValuesFormArray();
     preparedValuesFormArray.controls?.forEach((control, index) => {
@@ -92,10 +98,6 @@ export class CheckboxListInputComponent<T> implements OnChanges, OnInit, OnDestr
 
       this.form.updateValueAndValidity();
     }
-  }
-
-  getValuesFormArray(): FormArray {
-    return this.form.get('values') as FormArray;
   }
 
   registerOnChange(fn: (value: T[] | null) => void): void {
