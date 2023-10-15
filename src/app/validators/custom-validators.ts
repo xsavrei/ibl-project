@@ -11,7 +11,7 @@ export class CustomValidators {
         })
       } else {
         controls.forEach(control => {
-          group.controls[control].updateValueAndValidity();
+          group.controls[control].setErrors(null)
         })
       }
       return hasAtLeastOne ? null : { atLeastOneControl: true };
