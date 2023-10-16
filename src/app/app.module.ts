@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CheckboxListInputComponent, HeaderBarComponent, RequestFormComponent } from './components';
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
+import { MultiInputComponent } from './components/multi-input/multi-input.component';
 
 @NgModule({
   declarations: [
@@ -11,11 +12,13 @@ import { ValidationMessagesComponent } from './components/validation-messages/va
     HeaderBarComponent,
     RequestFormComponent,
     CheckboxListInputComponent,
-    ValidationMessagesComponent
+    ValidationMessagesComponent,
+    MultiInputComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

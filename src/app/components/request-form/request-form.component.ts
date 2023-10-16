@@ -23,6 +23,7 @@ export class RequestFormComponent {
   messageTypesValues = Object.values(MessageType);
 
   form = this.formBuilder.group({
+    id: this.formBuilder.control('id'),
     messageTypes: this.formBuilder.control<MessageType[] | null>([], [CustomValidators.atLeastOneValue]),
     airports: this.formBuilder.control<string[] | null>(null),
     countries: this.formBuilder.control<string[] | null>(null),
