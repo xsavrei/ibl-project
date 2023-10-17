@@ -10,7 +10,7 @@
       <tr *ngFor="let item of value.results">
         <td>{{item.queryType}}</td>
         <td>{{item.reportTime | date}}</td>
-        <td [innerHTML]="item.textHTML"></td>
+        <td [innerHTML]="highlightText(item.text)"></td>
       </tr>
     </ng-container>
     </tbody>

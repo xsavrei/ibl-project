@@ -54,14 +54,17 @@ export class MultiInputComponent implements ControlValueAccessor, Validator {
   }
 
   onKeyUp(event: any) {
+    if ((event.key === 'Backspace') && this.inputValue.trim() === '') {
+      this.values.pop();
+    }
     this.inputValue = event.target.value;
     if ((event.key === ' ' || event.key === 'Enter') && this.inputValue.trim() !== '') {
       this.values.push(this.inputValue.trim());
       this.inputValue = '';
-      if (this.values?.length && this.onChange && this.onTouched) {
-        this.onChange(this.values);
-        this.onTouched();
-      }
+    }
+    if (this.values?.length && this.onChange && this.onTouched) {
+      this.onChange(this.values);
+      this.onTouched();
     }
   }
 

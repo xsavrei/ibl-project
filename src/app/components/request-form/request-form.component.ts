@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,14 +7,15 @@ import {
   UntypedFormGroup,
   Validators
 } from '@angular/forms';
+import * as uuid from 'uuid';
 import { MessageType, WeatherRequest } from '../../domain';
 import { CustomValidators } from '../../validators';
-import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-request-form',
   templateUrl: './request-form.component.html',
-  styleUrls: ['./request-form.component.scss']
+  styleUrls: ['./request-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RequestFormComponent {
 
