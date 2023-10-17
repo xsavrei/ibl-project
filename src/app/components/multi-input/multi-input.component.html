@@ -1,7 +1,7 @@
 <div class="multiple">
-  <div *ngFor="let value of values" class="item">
+  <div *ngFor="let value of values; let index = index" class="item">
     {{ value }}
-    <div class="item-remove" (mousedown)="removeItem()">
+    <div class="item-remove" (mousedown)="removeItem(index)">
       <svg fill="#000000" id="remove" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px" viewBox="0 0 94.926 94.926" xml:space="preserve">
 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
@@ -9,6 +9,6 @@
 </svg>
     </div>
   </div>
-  <input type="text" class="input" [value]="inputValue" (keyup)="onKeyUp($event)">
+  <input type="text" class="input" (focus)="onInputFocus()" (blur)="onInputBlur()" [value]="inputValue" (keyup)="onKeyUp($event)">
 </div>
 

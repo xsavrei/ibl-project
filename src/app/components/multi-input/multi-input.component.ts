@@ -1,8 +1,7 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, ElementRef, forwardRef } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
-  FormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -31,9 +30,14 @@ export class MultiInputComponent implements ControlValueAccessor, Validator {
   inputValue: string = '';
   values: string[] = [];
   formControl?: AbstractControl;
+  elementRef?: ElementRef;
 
   onTouched?: () => void;
   onChange?: (value: string[] | null) => void;
+
+  constructor(elRef: ElementRef) {
+    this.elementRef = elRef;
+  }
 
   registerOnChange(fn: (value: string[] | null) => void) {
     this.onChange = fn;
@@ -61,12 +65,20 @@ export class MultiInputComponent implements ControlValueAccessor, Validator {
     }
   }
 
-  removeItem() {
-    this.values.pop();
+  //workaround to set/unset multi-input 'focus' without losing focus on native input
+  onInputFocus() {
+    this.elementRef?.nativeElement.setAttribute('style', 'border-color: #86b7fe; box-shadow:0 0 0 0.25rem rgba(13, 110, 253, 0.25)');
+  }
+
+  onInputBlur() {
+    this.elementRef?.nativeElement.setAttribute('style', '');
+  }
+
+  removeItem(i: number) {
+    this.values.splice(i, 1);
     if (this.onTouched) {
       this.onTouched();
     }
-    this.formControl?.markAsTouched({ onlySelf: false });
     this.formControl?.updateValueAndValidity({ onlySelf: false, emitEvent: false });
   }
 
