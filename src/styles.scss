@@ -1,8 +1,19 @@
 @import "bootstrap/scss/bootstrap.scss";
 @import "bootstrap/scss/variables";
 
+html,
+body {
+  min-height: 100%;
+  background-color: #EBEBEBFF !important;
+  --bs-body-font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+svg {
+  vertical-align: baseline!important;
+}
+
 .form-control {
-  max-width: 380px;
+  max-width: 80%;
 
   &.ng-touched {
     &.ng-invalid {
@@ -19,3 +30,6 @@
 .form-group {
   margin: 0.5rem;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

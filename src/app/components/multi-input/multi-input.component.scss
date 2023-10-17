@@ -1,5 +1,6 @@
 .multiple {
   display: flex;
+  overflow: auto;
 }
 
 .input {
@@ -21,8 +22,9 @@
   display: flex;
 
   .item-remove {
-    margin-left: 0.3rem;
+    margin-left: 0.1rem;
     cursor: pointer;
+    vertical-align: baseline!important;
   }
 }
 

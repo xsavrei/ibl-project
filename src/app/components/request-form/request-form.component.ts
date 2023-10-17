@@ -7,8 +7,9 @@ import {
   UntypedFormGroup,
   Validators
 } from '@angular/forms';
-import { MessageType } from '../../domain';
+import { MessageType, WeatherRequest } from '../../domain';
 import { CustomValidators } from '../../validators';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-request-form',
@@ -18,12 +19,12 @@ import { CustomValidators } from '../../validators';
 export class RequestFormComponent {
 
   @Output()
-  formSubmit = new EventEmitter<any>();
+  formSubmit = new EventEmitter<WeatherRequest>();
 
   messageTypesValues = Object.values(MessageType);
 
   form = this.formBuilder.group({
-    id: this.formBuilder.control('id'),
+    id: this.formBuilder.control(uuid.v4()),
     messageTypes: this.formBuilder.control<MessageType[] | null>([], [CustomValidators.atLeastOneValue]),
     airports: this.formBuilder.control<string[] | null>(null),
     countries: this.formBuilder.control<string[] | null>(null),
@@ -32,10 +33,14 @@ export class RequestFormComponent {
   constructor(private formBuilder: FormBuilder) {
   }
 
-
   onFormSubmit() {
     if (this.form.valid) {
-      this.formSubmit.emit(this.form.value);
+      this.formSubmit.emit(new WeatherRequest({
+        briefingId: this.form.value.id,
+        reportTypes: this.form.value.messageTypes,
+        stations: this.form.value.airports,
+        countries: this.form.value.countries
+      }));
     } else {
       this.markAllFormFieldsAsTouched(this.form);
     }

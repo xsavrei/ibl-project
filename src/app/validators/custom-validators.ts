@@ -14,7 +14,7 @@ export class CustomValidators {
           group.controls[control].setErrors(null)
         })
       }
-      return hasAtLeastOne ? null : { atLeastOneControl: true };
+      return hasAtLeastOne ? null : { atLeastOneControl: controls };
     }
   }
 

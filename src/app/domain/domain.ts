@@ -1,11 +1,21 @@
 export enum MessageType {
   METAR = 'METAR',
   SIGMET = 'SIGMET',
-  TAF = 'TAF'
+  TAF = 'TAF_LONGTAF'
 }
 
-export interface WeatherRequest {
-  messageTypes?: MessageType[];
-  airports?: string[];
+export class WeatherRequest {
+  briefingId?: string;
+  reportTypes?: MessageType[];
+  stations?: string[];
   countries?: string[];
+
+  constructor(partial?: Partial<WeatherRequest>) {
+    Object.assign(this, partial);
+  }
+}
+
+export class WeatherResponse {
+  id?: string;
+  results?: []
 }

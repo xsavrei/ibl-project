@@ -1,10 +1,19 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxUpperCaseDirectiveModule } from 'ngx-upper-case-directive';
 import { AppComponent } from './app.component';
-import { CheckboxListInputComponent, HeaderBarComponent, RequestFormComponent } from './components';
-import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
-import { MultiInputComponent } from './components/multi-input/multi-input.component';
+import {
+  CheckboxListInputComponent,
+  HeaderBarComponent,
+  HelpComponent,
+  MultiInputComponent,
+  RequestFormComponent,
+  ResultsComponent,
+  ValidationMessagesComponent
+} from './components';
 
 @NgModule({
   declarations: [
@@ -13,12 +22,18 @@ import { MultiInputComponent } from './components/multi-input/multi-input.compon
     RequestFormComponent,
     CheckboxListInputComponent,
     ValidationMessagesComponent,
-    MultiInputComponent
+    MultiInputComponent,
+    HelpComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    NgbPopoverModule,
+    HttpClientModule,
+    NgxUpperCaseDirectiveModule
   ],
   providers: [],
   bootstrap: [AppComponent]

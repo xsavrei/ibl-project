@@ -72,6 +72,13 @@ export class MultiInputComponent implements ControlValueAccessor, Validator {
 
   onInputBlur() {
     this.elementRef?.nativeElement.setAttribute('style', '');
+    if (this.inputValue.trim() !== '') {
+      this.values.push(this.inputValue.trim());
+      this.inputValue = '';
+    }
+    if (this.values?.length && this.onChange) {
+      this.onChange(this.values);
+    }
     if (this.onTouched) {
       this.onTouched();
     }
