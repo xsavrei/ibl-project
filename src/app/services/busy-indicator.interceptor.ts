@@ -3,10 +3,9 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor,
-  HttpResponse
+  HttpInterceptor
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { BusyIndicatorService } from './busy-indicator.service';
 
 @Injectable()
@@ -18,14 +17,8 @@ export class BusyIndicatorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.busyIndicator.start();
 
-    return next.handle(request).pipe(tap({
-      next: (event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          this.busyIndicator.stop();
-        }
-      }, error: () => {
-        this.busyIndicator.stop();
-      }
+    return next.handle(request).pipe(finalize(() => {
+      this.busyIndicator.stop();
     }));
   }
 }
