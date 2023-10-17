@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { WeatherRequest } from './domain';
-import { ApiClient } from './services/api-client.service';
+import "reflect-metadata";
+import { Observable } from 'rxjs';
 import * as uuid from 'uuid';
+import { WeatherRequest, WeatherResponse } from './domain';
+import { ApiClient } from './services/api-client.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,12 @@ import * as uuid from 'uuid';
 })
 export class AppComponent {
 
+  weatherResponse?: Observable<WeatherResponse>;
+
   constructor(private apiClient: ApiClient) {
   }
 
   onFormSubmit(request: WeatherRequest) {
-    this.apiClient.query(uuid.v4(), request).subscribe(res => {
-      console.log(res)
-    })
+    this.weatherResponse = this.apiClient.query(uuid.v4(), request);
   }
 }

@@ -1,3 +1,5 @@
+<app-toast-container aria-live="polite" aria-atomic="true"></app-toast-container>
+<app-busy-indicator/>
 <app-header-bar/>
 <div class="container-fluid">
   <div class="row">
@@ -9,9 +11,16 @@
     </div>
     <div class="col-8">
       <div class="card card-body">
-        <h4>Results</h4>
+        <ng-container *ngIf="weatherResponse | async as response; else startScreening">
+          <h4>Results</h4>
+          <app-results [results]="response.result"/>
+        </ng-container>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #startScreening>
+  <h4>Submit form to receive weather data</h4>
+</ng-template>
 

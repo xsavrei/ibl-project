@@ -1,3 +1,38 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ibl-project-primary: mat.define-palette(mat.$indigo-palette);
+$ibl-project-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ibl-project-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ibl-project-theme: mat.define-light-theme((
+  color: (
+    primary: $ibl-project-primary,
+    accent: $ibl-project-accent,
+    warn: $ibl-project-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($ibl-project-theme);
+
 @import "bootstrap/scss/bootstrap.scss";
 @import "bootstrap/scss/variables";
 
@@ -5,8 +40,12 @@ html,
 body {
   min-height: 100%;
   background-color: #EBEBEBFF !important;
+  background-image: url("assets/airplane-plane.svg");
+  background-repeat: no-repeat;
+  background-position: 40% 85%;
   --bs-body-font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
 
 svg {
   vertical-align: baseline!important;
@@ -33,3 +72,6 @@ svg {
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

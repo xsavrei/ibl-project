@@ -14,8 +14,3 @@
   <app-validation-messages [formGroupValidation]="form"/>
   <button class="btn btn-primary" type="button" (click)="onFormSubmit()">Submit</button>
 </form>
-
-
-<pre>{{form.value | json}}</pre>
-<pre>{{form.status | json}}</pre>
-<pre>{{form.get('messageTypes')?.status | json}}</pre>
