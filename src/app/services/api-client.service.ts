@@ -12,7 +12,8 @@ export class ApiClient {
 
   private URL = 'https://ogcie.iblsoft.com/ria/opmetquery'
 
-  constructor(private httpClient: HttpClient, private toastService: ToastService) {
+  constructor(private httpClient: HttpClient,
+              private toastService: ToastService) {
   }
 
   query(queryId: string, params: WeatherRequest) {

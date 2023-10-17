@@ -1,4 +1,4 @@
-<ng-container *ngIf="results; else loading">
+<ng-container *ngIf="results; else error">
   <table class="table table-hover">
     <tbody>
     <ng-container *ngFor="let value of processResults(results)">
@@ -17,9 +17,9 @@
   </table>
 </ng-container>
 
-<ng-template #loading>
-  <div class="loading">
-    <mat-spinner></mat-spinner>
+<ng-template #error>
+  <div class="error">
+    Error while receiving data
   </div>
 </ng-template>
 
